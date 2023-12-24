@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    
+</head>
+<body>
+
+    <div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+    <ul id="emps"></ul>
+
+    <button>Get External Content</button>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $.ajax({
+                    url: "/api/Employee",
+                    success: function (result) {
+                        document.getElementById("emps").innerHTML=""
+                        for (let emp of result) {
+                            document.getElementById("emps").innerHTML += "<li>" + emp.name+"</li>"
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
